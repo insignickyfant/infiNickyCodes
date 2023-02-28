@@ -10096,8 +10096,8 @@
     },
     "CLI/1.0.0": {
       "type": "project",
-      "path": "../../Infi-CameraProject/CameraConsoleApp/InfiNickyCodes/CLI.csproj",
-      "msbuildProject": "../../Infi-CameraProject/CameraConsoleApp/InfiNickyCodes/CLI.csproj"
+      "path": "../CamerasCLI/CLI.csproj",
+      "msbuildProject": "../CamerasCLI/CLI.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -10142,8 +10142,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\infinicky\\OneDrive - Universiteit Utrecht\\Personal Projects\\Infi-CameraProject\\CameraConsoleApp\\InfiNickyCodes\\CLI.csproj": {
-              "projectPath": "C:\\Users\\infinicky\\OneDrive - Universiteit Utrecht\\Personal Projects\\Infi-CameraProject\\CameraConsoleApp\\InfiNickyCodes\\CLI.csproj"
+            "C:\\Users\\infinicky\\OneDrive - Universiteit Utrecht\\Personal Projects\\infiNickyCodes\\CamerasCLI\\CLI.csproj": {
+              "projectPath": "C:\\Users\\infinicky\\OneDrive - Universiteit Utrecht\\Personal Projects\\infiNickyCodes\\CamerasCLI\\CLI.csproj"
             }
           }
         }

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "k87wvEWbEETm2S4Z4Es4K+J62LpKelQuJ16oZJ37/r9LOa9e9cdlGlYwQLn3colFyGFNHHVG9ygmwf4wN3PdBA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\infinicky\\OneDrive - Universiteit Utrecht\\Personal Projects\\infiNickyCodes\\CamerasCLI\\CLI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\infinicky\\.nuget\\packages\\commandlineparser\\2.9.1\\commandlineparser.2.9.1.nupkg.sha512",
+    "C:\\Users\\infinicky\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
