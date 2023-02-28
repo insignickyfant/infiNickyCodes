@@ -24,7 +24,7 @@ namespace InfiNickyCodes
             csv_file_path = PATH;
             Cameras = new List<Camera>();
             //CreateCamerasFromCSV();
-            //Cameras = CreateCamerasFromCSV();
+            Cameras = CreateCamerasFromCSV();
         }
 
         /// <summary>
