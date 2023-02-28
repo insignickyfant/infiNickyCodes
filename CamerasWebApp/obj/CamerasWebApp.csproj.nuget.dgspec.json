@@ -4,14 +4,14 @@
     "C:\\Users\\infinicky\\OneDrive - Universiteit Utrecht\\Personal Projects\\infiNickyCodes\\CamerasWebApp\\CamerasWebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\infinicky\\OneDrive - Universiteit Utrecht\\Personal Projects\\Infi-CameraProject\\CameraConsoleApp\\InfiNickyCodes\\CLI.csproj": {
+    "C:\\Users\\infinicky\\OneDrive - Universiteit Utrecht\\Personal Projects\\infiNickyCodes\\CamerasCLI\\CLI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\infinicky\\OneDrive - Universiteit Utrecht\\Personal Projects\\Infi-CameraProject\\CameraConsoleApp\\InfiNickyCodes\\CLI.csproj",
+        "projectUniqueName": "C:\\Users\\infinicky\\OneDrive - Universiteit Utrecht\\Personal Projects\\infiNickyCodes\\CamerasCLI\\CLI.csproj",
         "projectName": "CLI",
-        "projectPath": "C:\\Users\\infinicky\\OneDrive - Universiteit Utrecht\\Personal Projects\\Infi-CameraProject\\CameraConsoleApp\\InfiNickyCodes\\CLI.csproj",
+        "projectPath": "C:\\Users\\infinicky\\OneDrive - Universiteit Utrecht\\Personal Projects\\infiNickyCodes\\CamerasCLI\\CLI.csproj",
         "packagesPath": "C:\\Users\\infinicky\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\infinicky\\OneDrive - Universiteit Utrecht\\Personal Projects\\Infi-CameraProject\\CameraConsoleApp\\InfiNickyCodes\\obj\\",
+        "outputPath": "C:\\Users\\infinicky\\OneDrive - Universiteit Utrecht\\Personal Projects\\infiNickyCodes\\CamerasCLI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -103,8 +103,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\infinicky\\OneDrive - Universiteit Utrecht\\Personal Projects\\Infi-CameraProject\\CameraConsoleApp\\InfiNickyCodes\\CLI.csproj": {
-                "projectPath": "C:\\Users\\infinicky\\OneDrive - Universiteit Utrecht\\Personal Projects\\Infi-CameraProject\\CameraConsoleApp\\InfiNickyCodes\\CLI.csproj"
+              "C:\\Users\\infinicky\\OneDrive - Universiteit Utrecht\\Personal Projects\\infiNickyCodes\\CamerasCLI\\CLI.csproj": {
+                "projectPath": "C:\\Users\\infinicky\\OneDrive - Universiteit Utrecht\\Personal Projects\\infiNickyCodes\\CamerasCLI\\CLI.csproj"
               }
             }
           }
