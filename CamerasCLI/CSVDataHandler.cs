@@ -32,6 +32,7 @@ namespace InfiNickyCodes
         /// </summary>
         public List<Camera> CreateCamerasFromCSV() // string csv_file_path
         {
+            Cameras.Clear();
             try
             {
                 using (TextFieldParser fieldParser = new(csv_file_path))

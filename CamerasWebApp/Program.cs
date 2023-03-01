@@ -12,8 +12,6 @@ namespace CamerasWebApp
 {
     public class Program
     {
-        public static CSVDataHandler dataHandler;
-
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -23,27 +21,9 @@ namespace CamerasWebApp
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            string csv_file_path = "wwwroot/csv/cameras-defb.csv";
-            dataHandler = new CSVDataHandler(csv_file_path);
-            //"Server=(localdb)\\mssqllocaldb;Database=CamerasWebApp.Data;Trusted_Connection=True;MultipleActiveResultSets=true"
-            SqlConnection connection = new SqlConnection(builder.Configuration.GetConnectionString("ApplicationDbContext"));
-            DataTable table = ToDataTable<InfiNickyCodes.Camera>(dataHandler.CreateCamerasFromCSV());
-            connection.Open();
-            SqlBulkCopy bulkCopy = new(connection);
-            bulkCopy.DestinationTableName = "Camera";
-            try
-            {
-                bulkCopy.WriteToServer(table);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
-            //SqlDataAdapter adapter = new ("SELECT * FROM " + table.TableName, connection);
-            //adapter.Fill(table);
-
-
+            // used to populate local database dbo.Camera
+            // string csv_file_path = "wwwroot/csv/cameras-defb.csv";
+            // LoadDatabaseFromCSV(csv_file_path, builder);
 
             var app = builder.Build();
             // Configure the HTTP request pipeline.
@@ -65,8 +45,36 @@ namespace CamerasWebApp
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+            //app.MapGet("/", () => "Hello World!");
 
             app.Run();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="csv_file_path">Path string to the csv file</param>
+        /// <param name="builder">The current WebApplicationBuilder</param>
+        static void LoadDatabaseFromCSV(string csv_file_path, WebApplicationBuilder builder)
+        {
+            CSVDataHandler dataHandler = new(csv_file_path);
+            //connection string: "Server=(localdb)\\mssqllocaldb;Database=CamerasWebApp.Data;Trusted_Connection=True;MultipleActiveResultSets=true"
+            SqlConnection connection = new SqlConnection(builder.Configuration.GetConnectionString("ApplicationDbContext"));
+            DataTable table = ToDataTable<InfiNickyCodes.Camera>(dataHandler.CreateCamerasFromCSV());
+            connection.Open();
+            SqlBulkCopy bulkCopy = new(connection);
+            bulkCopy.DestinationTableName = "Camera";
+            try
+            {
+                bulkCopy.WriteToServer(table);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            SqlDataAdapter adapter = new("SELECT * FROM " + "Camera", connection);
+            adapter.Fill(table);
         }
 
         /// <summary>
@@ -91,7 +99,6 @@ namespace CamerasWebApp
                     values[i] = props[i].GetValue(item) ?? DBNull.Value;
                 table.Rows.Add(values);
             }
-            table.TableName = "CSVData";
             return table;
         }
     }
