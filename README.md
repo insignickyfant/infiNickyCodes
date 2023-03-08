@@ -2,7 +2,8 @@
 
 Implementatie van een Open Source codeeropdracht van Infi.
 
-De opdracht bestaat uit drie onderdelen, waarin gebruik gemaakt moest worden van een dataset [data/cameras-defb.csv](data/cameras-defb.csv). Ik heb alleen de eerste opdracht afgemaakt, die geschreven is in C#.
+De opdracht bestaat uit drie onderdelen, waarin gebruik gemaakt moest worden van een dataset [data/cameras-defb.csv](data/cameras-defb.csv). Ik heb alleen de eerste opdracht afgemaakt, die geschreven is in C#. 
+Mijn poging tot de rest van de onderdelen is te vinden in deze repo, maar is op het moment niet functioneel.
 
 ## CLI
 
