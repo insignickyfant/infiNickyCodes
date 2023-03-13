@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic.FileIO;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace InfiNickyCodes
@@ -83,18 +84,47 @@ namespace InfiNickyCodes
         /// Writes a list of matching cameras to the console.
         /// </summary>
         /// <param name="s">string to search for in Camera names</param>
+        //public void Search(string s)
+        //{
+        //    List<Camera> result = Cameras.FindAll(cam =>
+        //        cam.Name.Contains(s, StringComparison.CurrentCultureIgnoreCase));
+
+        //    if (result.Count != 0)
+        //    {
+        //        foreach (var camera in result)
+        //        {
+        //            Console.WriteLine(camera.Number + " | " + camera.Name + " | " +
+        //                              camera.Longitude + " | " + camera.Latitude);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Not found: {0}", s);
+        //    }
+        //}
+
+        // More efficient?
+        /// <summary>
+        /// Searches Camera names for containing input string, while ignoring case. 
+        /// Writes a list of matching cameras to the console.
+        /// </summary>
+        /// <param name="s">string to search for in Camera names</param>
         public void Search(string s)
         {
-            List<Camera> result = Cameras.FindAll(cam => 
-                cam.Name.Contains(s, StringComparison.CurrentCultureIgnoreCase));
+            var result =
+                from cam in Cameras
+                where cam.Name.Contains(s)
+                select cam;
 
-            if (result.Count != 0)
+            if (result.Count() > 0) 
             {
+                StringBuilder sb = new();
                 foreach (var camera in result)
                 {
-                    Console.WriteLine(camera.Number + " | " + camera.Name + " | " + 
-                                      camera.Longitude + " | " + camera.Latitude);
+                    sb.AppendFormat("{0} | {1} | {2} | {3}\n", 
+                        camera.Number, camera.Name, camera.Longitude, camera.Latitude);
                 }
+                Console.Write(sb.ToString());
             }
             else
             {
@@ -102,18 +132,15 @@ namespace InfiNickyCodes
             }
         }
 
+
         /// <summary>
         /// Searches for the camera with the given number and writes it to the console.
         /// </summary>
         /// <param name="n">identifying camera number</param>
         public void Search(int n)
         {
-            Camera result = Cameras.Find(
-                delegate (Camera cam)
-                {
-                    return cam.Number == n;
-                }
-            );
+            Camera result = Cameras.Find(cam => cam.Number == n);
+
             if (result != null)
             {
                 Console.WriteLine(result.Number + " | " + result.Name + " | " +
