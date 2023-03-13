@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CamerasWebApp.Data;
 using CamerasWebApp.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using InfiNickyCodes;
 
 namespace CamerasWebApp.Controllers
 {
@@ -18,8 +19,19 @@ namespace CamerasWebApp.Controllers
         public CamerasController(ApplicationDbContext context)
         {
             _context = context;
+            string csv_file_path = "wwwroot/csv/cameras-defb.csv";
+            CSVDataHandler dataHandler = new(csv_file_path);
+            foreach (var cam in dataHandler.CreateCamerasFromCSV())
+            {
+                Models.Camera camModel = new Models.Camera();
+                camModel.Id = cam.Number;
+                camModel.Number = cam.Number;
+                camModel.Name = cam.Name;
+                camModel.Longitude = cam.Longitude;
+                camModel.Latitude = cam.Latitude;
+                _context.Camera.Add(camModel);
 
-            //_context.Camera.Add();
+            }
         }
 
         // GET: Cameras
@@ -38,7 +50,7 @@ namespace CamerasWebApp.Controllers
         public async Task<IActionResult> SearchResults(string partialName)
         {
             ViewResult results;
-            List<Camera> cameras = await _context.Camera.Where(cam => cam.Name.Contains(partialName)).ToListAsync();
+            List<Models.Camera> cameras = await _context.Camera.Where(cam => cam.Name.Contains(partialName)).ToListAsync();
             if (cameras.Count > 0)
             {
                 results = View("Index", cameras);
@@ -79,7 +91,7 @@ namespace CamerasWebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Number,Name,Latitude,Longitude")] Camera camera)
+        public async Task<IActionResult> Create([Bind("Id,Number,Name,Latitude,Longitude")] Models.Camera camera)
         {
             if (ModelState.IsValid)
             {
@@ -111,7 +123,7 @@ namespace CamerasWebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Number,Name,Latitude,Longitude")] Camera camera)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Number,Name,Latitude,Longitude")] Models.Camera camera)
         {
             if (id != camera.Id)
             {

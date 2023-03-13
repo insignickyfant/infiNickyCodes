@@ -1,11 +1,5 @@
-﻿using System.Data;
-using Microsoft.VisualBasic.FileIO;
+﻿using Microsoft.VisualBasic.FileIO;
 using System.Text.RegularExpressions;
-using System.Globalization;
-using static System.Reflection.Metadata.BlobBuilder;
-using System.Formats.Asn1;
-using System.Reflection.PortableExecutable;
-using CsvHelper;
 
 namespace InfiNickyCodes
 {
@@ -23,7 +17,6 @@ namespace InfiNickyCodes
         {
             csv_file_path = PATH;
             Cameras = new List<Camera>();
-            //CreateCamerasFromCSV();
             Cameras = CreateCamerasFromCSV();
         }
 
@@ -32,13 +25,13 @@ namespace InfiNickyCodes
         /// </summary>
         public List<Camera> CreateCamerasFromCSV() // string csv_file_path
         {
-            Cameras.Clear();
+            Cameras.Clear(); // make sure list is empty
             try
             {
                 using (TextFieldParser fieldParser = new(csv_file_path))
                 {
                     fieldParser.SetDelimiters(new string[] { ";" });
-                    // Comment out the Errors in CSV file
+                    // Comment out the Error in CSV file. Should find a more general solution.
                     fieldParser.CommentTokens = new string[] { "ERROR" };
                 
                     // first line contains the column names (Camera, Latitude, Longitude)
@@ -86,7 +79,8 @@ namespace InfiNickyCodes
         }
 
         /// <summary>
-        /// Searches Camera names for containing input string, while ignoring case.
+        /// Searches Camera names for containing input string, while ignoring case. 
+        /// Writes a list of matching cameras to the console.
         /// </summary>
         /// <param name="s">string to search for in Camera names</param>
         public void Search(string s)
@@ -94,7 +88,7 @@ namespace InfiNickyCodes
             List<Camera> result = Cameras.FindAll(
                 delegate (Camera cam)
                 {
-                    return cam.Name.Contains(s, System.StringComparison.CurrentCultureIgnoreCase);
+                    return cam.Name.Contains(s, StringComparison.CurrentCultureIgnoreCase);
                 }
             );
             if (result.Count != 0)
@@ -111,6 +105,10 @@ namespace InfiNickyCodes
             }
         }
 
+        /// <summary>
+        /// Searches for the camera with the given number and writes it to the console.
+        /// </summary>
+        /// <param name="n">identifying camera number</param>
         public void Search(int n)
         {
             Camera result = Cameras.Find(

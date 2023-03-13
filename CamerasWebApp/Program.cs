@@ -22,8 +22,8 @@ namespace CamerasWebApp
             builder.Services.AddControllersWithViews();
 
             // used to populate local database dbo.Camera
-            // string csv_file_path = "wwwroot/csv/cameras-defb.csv";
-            // LoadDatabaseFromCSV(csv_file_path, builder);
+            string csv_file_path = "wwwroot/csv/cameras-defb.csv";
+            LoadDatabaseFromCSV(csv_file_path, builder);
 
             var app = builder.Build();
             // Configure the HTTP request pipeline.
@@ -61,9 +61,10 @@ namespace CamerasWebApp
             //connection string: "Server=(localdb)\\mssqllocaldb;Database=CamerasWebApp.Data;Trusted_Connection=True;MultipleActiveResultSets=true"
             SqlConnection connection = new SqlConnection(builder.Configuration.GetConnectionString("ApplicationDbContext"));
             DataTable table = ToDataTable<InfiNickyCodes.Camera>(dataHandler.CreateCamerasFromCSV());
+
             connection.Open();
             SqlBulkCopy bulkCopy = new(connection);
-            bulkCopy.DestinationTableName = "Camera";
+            bulkCopy.DestinationTableName = "Cameras";
             try
             {
                 bulkCopy.WriteToServer(table);
@@ -73,8 +74,9 @@ namespace CamerasWebApp
                 Console.WriteLine(e.Message);
             }
 
-            SqlDataAdapter adapter = new("SELECT * FROM " + "Camera", connection);
+            SqlDataAdapter adapter = new("SELECT * FROM " + "Cameras", connection);
             adapter.Fill(table);
+            adapter.Dispose();
         }
 
         /// <summary>
