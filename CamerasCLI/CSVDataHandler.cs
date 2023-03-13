@@ -85,12 +85,9 @@ namespace InfiNickyCodes
         /// <param name="s">string to search for in Camera names</param>
         public void Search(string s)
         {
-            List<Camera> result = Cameras.FindAll(
-                delegate (Camera cam)
-                {
-                    return cam.Name.Contains(s, StringComparison.CurrentCultureIgnoreCase);
-                }
-            );
+            List<Camera> result = Cameras.FindAll(cam => 
+                cam.Name.Contains(s, StringComparison.CurrentCultureIgnoreCase));
+
             if (result.Count != 0)
             {
                 foreach (var camera in result)
