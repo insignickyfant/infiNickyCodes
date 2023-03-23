@@ -113,7 +113,7 @@ namespace InfiNickyCodes
         {
             var result =
                 from cam in Cameras
-                where cam.Name.Contains(s)
+                where cam.Name.Contains(s, StringComparison.CurrentCultureIgnoreCase)
                 select cam;
 
             if (result.Count() > 0) 
